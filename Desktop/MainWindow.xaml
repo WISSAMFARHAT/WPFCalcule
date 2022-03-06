@@ -17,10 +17,10 @@
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="58"></RowDefinition>
+                <RowDefinition  ></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="160"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" FontFamily="font/Helvetica-Bold.ttf" HorizontalContentAlignment="Center">
@@ -60,7 +60,7 @@
                 <TextBlock FontFamily="font/Helvetica-Bold.ttf" Foreground="white" FontWeight="Bold" Grid.Row="0" HorizontalAlignment="Left" Margin="60 0 0 0" FontSize="17">
                     Insert the cost here:
                 </TextBlock>
-                <TextBox    Grid.Row="1"   x:Name="CostInsert"     Height="35" FontSize="20" TextAlignment="Center" Foreground="white" Width="300" HorizontalAlignment="Center" Margin="20 -10 0 0 " Background="Transparent" BorderBrush="white" BorderThickness="2" PreviewTextInput="PreviewTextInput" KeyDown="OnKeyDownHandler" TextChanged="change"    >
+                <TextBox    Grid.Row="1"   x:Name="CostInsert"     Height="35" FontSize="20" TextAlignment="Center" Foreground="white" Width="300" HorizontalAlignment="Center" Margin="20 -10 0 0 " Background="Transparent" BorderBrush="white" BorderThickness="2" PreviewTextInput="PreviewTextInput" KeyDown="OnKeyDownHandler"    >
                     
                 </TextBox>
                          
@@ -78,20 +78,24 @@
 
             </Grid>
 
-            <Grid Grid.Row="4" HorizontalAlignment="Center">
+            <Grid Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Style="{DynamicResource button}" x:Name="btncalcule" Width="90" Height="45" FontSize="15"  FontWeight="Bold" BorderThickness="2" Content="Calculate" Cursor="Hand" Background="Transparent" Foreground="#f8b100" Margin="10" Click="Btncalcule_Click">
+                <Button Grid.Row="0" Grid.Column="0" Style="{DynamicResource button}" x:Name="btncalcule" Width="90" Height="45" FontSize="15"  FontWeight="Bold" BorderThickness="2" Content="Calculate" Cursor="Hand" Background="Transparent" Foreground="#f8b100" Margin="10" Click="Btncalcule_Click">
                     
                 </Button>
-                <Button Grid.Column="1" Style="{DynamicResource button}" x:Name="btnclose" Width="90" Height="45" FontSize="15" FontWeight="Bold" BorderThickness="2" Content="Close" Cursor="Hand" Background="Transparent" Foreground="#f8b100" Margin="10" Click="Btnclose_Click"></Button>
-                <Button Grid.Column="2" Style="{DynamicResource button}" x:Name="btnclear" Width="90" Height="45" FontSize="15" FontWeight="Bold" BorderThickness="2" Cursor="Hand" Content="Clear" Background="Transparent" Foreground="#f8b100" Margin="10" Click="Btnclear_Click"></Button>
+                <Button  Grid.Row="0" Grid.Column="1" Style="{DynamicResource button}" x:Name="btnclose" Width="90" Height="45" FontSize="15" FontWeight="Bold" BorderThickness="2" Content="Close" Cursor="Hand" Background="Transparent" Foreground="#f8b100" Margin="10" Click="Btnclose_Click"></Button>
+                <Button Grid.Row="0" Grid.Column="2" Style="{DynamicResource button}" x:Name="btnclear" Width="90" Height="45" FontSize="15" FontWeight="Bold" BorderThickness="2" Cursor="Hand" Content="Clear" Background="Transparent" Foreground="#f8b100" Margin="10" Click="Btnclear_Click"></Button>
 
             </Grid>
-            <Grid Grid.Row="5" HorizontalAlignment="Center" Margin="0 0 0 0"  Height="100" VerticalAlignment="Bottom" >
+            <Grid Grid.Row="5" HorizontalAlignment="Center" Margin="0 0 0 0"  Height="80" VerticalAlignment="Bottom" >
                 <TextBlock FontSize="15" Foreground="#f8b100" VerticalAlignment="Bottom" Margin="0 0 0 15">
                     POWERD WITH ♥ BY
                  <Button  Click="Btnshady_Click" Style="{DynamicResource MyButtonStyle}" Background="Transparent" BorderThickness="0"   VerticalAlignment="Bottom"  FontSize="15" Foreground="#f8b100" Cursor="Hand">

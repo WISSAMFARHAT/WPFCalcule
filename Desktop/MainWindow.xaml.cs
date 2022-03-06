@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -24,6 +26,15 @@ namespace Desktop
     public partial class MainWindow : Window
     {
         int a = 1;
+        public float TVA;
+        public float lb50;
+        public float lb100;
+        public float lb200;
+        public float lb;
+        public float d10;
+        public float d50;
+        public float d100;
+        public float d;
         public MainWindow()
         {
             InitializeComponent();
@@ -34,6 +45,20 @@ namespace Desktop
             LBP.BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#f8b100");
             a = 1;
             CostInsert.Focus();
+            using (StreamReader r = new StreamReader("../../data/db.json"))
+            {
+                string json = r.ReadToEnd();
+                data items = JsonConvert.DeserializeObject<data>(json);
+                TVA=items.TVA;
+                lb50 = items.lb50;
+                lb100 = items.lb100;
+                lb200 = items.lb200;
+                lb = items.lb;
+                d10 = items.d10;
+                d50 = items.d50;
+                d100 = items.d100;
+                d = items.d;
+    }
             
         }
     
@@ -123,19 +148,19 @@ namespace Desktop
                 CostInsert.Text = d.ToString("#,0");
                 if (vOut <= 50000)//2
                 {
-                    total = (ulong)(vOut * 2 * 1.11);
+                    total = (ulong)(vOut * lb50 * TVA);
                 }
                 else if (vOut <= 100000)//1.9
                 {
-                    total = (ulong)(vOut * 1.9 * 1.11);
+                    total = (ulong)(vOut * lb100 * TVA);
                 }
                 else if (vOut <= 200000)//1.7
                 {
-                    total = (ulong)(vOut * 1.7 * 1.11);
+                    total = (ulong)(vOut * lb200 * TVA);
                 }
                 else//1.5
                 {
-                    total = (ulong)(vOut * 1.5 * 1.11);
+                    total = (ulong)(vOut * lb * TVA);
                 }
                 total = RoundLBP(total.ToString(), total);
 
@@ -147,23 +172,23 @@ namespace Desktop
 
                 if (v <= 10)//2
                 {
-                    LPBTOTAL = Decimal.Multiply(v, 2);
-                    LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)1.11);
+                    LPBTOTAL = Decimal.Multiply(v, (Decimal)d10);
+                    LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
                 }
                 else if (v <= 50)//1.9
                 {
-                    LPBTOTAL = Decimal.Multiply(v, (Decimal)1.9);
-                    LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)1.11);
+                    LPBTOTAL = Decimal.Multiply(v, (Decimal)d50);
+                    LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
                 }
                 else if (v <= 100)//1.7
                 {
-                    LPBTOTAL = Decimal.Multiply(v, (Decimal)1.7);
-                    LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)1.11);
+                    LPBTOTAL = Decimal.Multiply(v, (Decimal)d100);
+                    LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
                 }
                 else//1.5
                 {
-                    LPBTOTAL = Decimal.Multiply(v, (Decimal)1.5);
-                    LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)1.11);
+                    LPBTOTAL = Decimal.Multiply(v, (Decimal)d);
+                    LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
                 }
 
                 selling.Text = LPBTOTAL.ToString("C");
@@ -204,8 +229,8 @@ namespace Desktop
         }
         private void Btnshady_Click(object sender, RoutedEventArgs e)
         {
-            Image img = new Image();
-            img.Show();
+            login l = new login();
+            l.Show();
 
 
         }
@@ -216,8 +241,8 @@ namespace Desktop
                 this.DragMove();
         }
 
-        private void change(object sender, TextChangedEventArgs e)
-        {
-        }
+       
+
+       
     }
 }
