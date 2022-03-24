@@ -27,14 +27,25 @@ namespace Desktop
     {
         int a = 1;
         public float TVA;
-        public float lb50;
-        public float lb100;
-        public float lb200;
-        public float lb;
-        public float d10;
-        public float d50;
-        public float d100;
-        public float d;
+        public float lb1;
+        public float lb2;
+        public float lb3;
+        public float lb4;
+        public float d1;
+        public float d2;
+        public float d3;
+        public float d4;
+        public float d5;
+        public float d6;
+
+        public float tolb1;
+        public float tolb2;
+        public float tolb3;
+        public float toD1;
+        public float toD2;
+        public float toD3;
+        public float toD4;
+        public float toD5;
         public MainWindow()
         {
             InitializeComponent();
@@ -45,20 +56,6 @@ namespace Desktop
             LBP.BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#f8b100");
             a = 1;
             CostInsert.Focus();
-            using (StreamReader r = new StreamReader("../../data/db.json"))
-            {
-                string json = r.ReadToEnd();
-                data items = JsonConvert.DeserializeObject<data>(json);
-                TVA=items.TVA;
-                lb50 = items.lb50;
-                lb100 = items.lb100;
-                lb200 = items.lb200;
-                lb = items.lb;
-                d10 = items.d10;
-                d50 = items.d50;
-                d100 = items.d100;
-                d = items.d;
-    }
             
         }
     
@@ -138,6 +135,31 @@ namespace Desktop
 
         private void Calcule()
         {
+            using (StreamReader r = new StreamReader("./db.json"))
+            {
+                string json = r.ReadToEnd();
+                data items = JsonConvert.DeserializeObject<data>(json);
+                TVA = items.TVA;
+                lb1 = items.lb1;
+                lb2 = items.lb2;
+                lb3 = items.lb3;
+                lb4 = items.lb4;
+                d1 = items.d1;
+                d2 = items.d2;
+                d3 = items.d3;
+                d4 = items.d4;
+                d5 = items.d5;
+                d6 = items.d6;
+                tolb1 = items.tolb1;
+                tolb2 = items.tolb2;
+                tolb3 = items.tolb3;
+                toD1 = items.toD1;
+                toD2 = items.toD2;
+                toD3 = items.toD3;
+                toD4 = items.toD4;
+                toD5 = items.toD5;
+            }
+
             ulong total = 0;
             Decimal LPBTOTAL = 0;
             if (a == 1)
@@ -146,21 +168,21 @@ namespace Desktop
                 ulong vOut = Convert.ToUInt64(result);
                 decimal d = Convert.ToDecimal(CostInsert.Text);
                 CostInsert.Text = d.ToString("#,0");
-                if (vOut <= 50000)//2
+                if (vOut <= tolb1)//lb1
                 {
-                    total = (ulong)(vOut * lb50 * TVA);
+                    total = (ulong)(vOut * lb1 * TVA);
                 }
-                else if (vOut <= 100000)//1.9
+                else if (vOut <= tolb1)//lb2
                 {
-                    total = (ulong)(vOut * lb100 * TVA);
+                    total = (ulong)(vOut * lb2 * TVA);
                 }
-                else if (vOut <= 200000)//1.7
+                else if (vOut <= tolb3)//lb3
                 {
-                    total = (ulong)(vOut * lb200 * TVA);
+                    total = (ulong)(vOut * lb3 * TVA);
                 }
-                else//1.5
+                else//lb4
                 {
-                    total = (ulong)(vOut * lb * TVA);
+                    total = (ulong)(vOut * lb4 * TVA);
                 }
                 total = RoundLBP(total.ToString(), total);
 
@@ -170,24 +192,34 @@ namespace Desktop
             {
                 Decimal v = Convert.ToDecimal(CostInsert.Text);
 
-                if (v <= 10)//2
+                if (v <= (Decimal)toD1)//d1
                 {
-                    LPBTOTAL = Decimal.Multiply(v, (Decimal)d10);
+                    LPBTOTAL = Decimal.Multiply(v, (Decimal)d1);
                     LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
                 }
-                else if (v <= 50)//1.9
+                else if (v <= (Decimal)toD2)//d2
                 {
-                    LPBTOTAL = Decimal.Multiply(v, (Decimal)d50);
+                    LPBTOTAL = Decimal.Multiply(v, (Decimal)d2);
                     LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
                 }
-                else if (v <= 100)//1.7
+                else if (v <= (Decimal)toD3)//d3
                 {
-                    LPBTOTAL = Decimal.Multiply(v, (Decimal)d100);
+                    LPBTOTAL = Decimal.Multiply(v, (Decimal)d3);
                     LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
                 }
-                else//1.5
+                else if (v <= (Decimal)toD4)//d4
                 {
-                    LPBTOTAL = Decimal.Multiply(v, (Decimal)d);
+                    LPBTOTAL = Decimal.Multiply(v, (Decimal)d4);
+                    LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
+                }
+                else if (v <= (Decimal)toD5)//d5
+                {
+                    LPBTOTAL = Decimal.Multiply(v, (Decimal)d5);
+                    LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
+                }
+                else//d6
+                {
+                    LPBTOTAL = Decimal.Multiply(v, (Decimal)d6);
                     LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
                 }
 

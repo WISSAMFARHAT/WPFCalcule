@@ -95,15 +95,16 @@
                 <Button Grid.Row="0" Grid.Column="2" Style="{DynamicResource button}" x:Name="btnclear" Width="90" Height="45" FontSize="15" FontWeight="Bold" BorderThickness="2" Cursor="Hand" Content="Clear" Background="Transparent" Foreground="#f8b100" Margin="10" Click="Btnclear_Click"></Button>
 
             </Grid>
-            <Grid Grid.Row="5" HorizontalAlignment="Center" Margin="0 0 0 0"  Height="80" VerticalAlignment="Bottom" >
-                <TextBlock FontSize="15" Foreground="#f8b100" VerticalAlignment="Bottom" Margin="0 0 0 15">
+            <StackPanel Grid.Row="5" Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 0"  Height="80"  >
+                <TextBlock VerticalAlignment="Center"  Height="20"  FontSize="15" Foreground="#f8b100"  >
                     POWERD WITH ♥ BY
-                 <Button  Click="Btnshady_Click" Style="{DynamicResource MyButtonStyle}" Background="Transparent" BorderThickness="0"   VerticalAlignment="Bottom"  FontSize="15" Foreground="#f8b100" Cursor="Hand">
-                     Farhat
-                 </Button>
-
                 </TextBlock>
-            </Grid>
+                <Button Background="Transparent"  Click="Btnshady_Click"  Style="{DynamicResource buttonremove}"  Cursor="Hand" Margin="10 0 0 0"  Width="100" Height="30" >
+                    <StackPanel>
+                        <Image Source="images/logo.png"  />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

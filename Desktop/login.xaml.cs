@@ -34,7 +34,7 @@ namespace Desktop
         private void Btnlog_Click(object sender, RoutedEventArgs e)
         {
             string id = name.Text;
-            string password = pwd.Text;
+            string password = pwd.Password;
             subnit(id, password);
         }
 
@@ -42,10 +42,10 @@ namespace Desktop
         {
             if (e.Key == Key.Return)
             {
-                if (pwd.Text.Length != 0)
+                if (pwd.Password.Length != 0)
                 {
                     string id = name.Text;
-                    string password = pwd.Text;
+                    string password = pwd.Password;
                     subnit(id, password);
 
 
@@ -59,11 +59,19 @@ namespace Desktop
 
         public void subnit(string name ,string pwd)
         {
-            if(name=="admin" && pwd =="admin")
+            if(name=="Maliks" && pwd =="Maliksadmin123456")
             {
-
-                change ch = new change();
-                ch.Show();
+                if(price.IsChecked==true)
+                {
+                    change ch = new change();
+                    ch.Show();
+                }
+                else
+                {
+                    condition c = new condition();
+                    c.Show();
+                }
+               
                 this.Close();
             }
             else

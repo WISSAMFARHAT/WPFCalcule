@@ -65,6 +65,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="condition.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Image.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -83,6 +87,9 @@
     </Compile>
     <Compile Include="change.xaml.cs">
       <DependentUpon>change.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="condition.xaml.cs">
+      <DependentUpon>condition.xaml</DependentUpon>
     </Compile>
     <Compile Include="data.cs" />
     <Compile Include="Image.xaml.cs">
@@ -116,7 +123,6 @@
     </EmbeddedResource>
     <Resource Include="font\Helvetica-Bold.ttf" />
     <Resource Include="font\Helvetica.ttf" />
-    <None Include="data\db.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

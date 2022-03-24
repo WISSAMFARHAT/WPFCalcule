@@ -9,14 +9,27 @@ namespace Desktop
     class data
     {
         public float TVA;
-        public float lb50;
-        public float lb100;
-        public float lb200;
-        public float lb;
-        public float d10;
-        public float d50;
-        public float d100;
-        public float d;
+        public float lb1;
+        public float lb2;
+        public float lb3;
+        public float lb4;
+        public float d1;
+        public float d2;
+        public float d3;
+        public float d4;
+        public float d5;
+        public float d6;
+
+        public float tolb1;
+        public float tolb2;
+        public float tolb3;
+        public float toD1;
+        public float toD2;
+        public float toD3;
+        public float toD4;
+        public float toD5;
+        
+
 
     }
 }
