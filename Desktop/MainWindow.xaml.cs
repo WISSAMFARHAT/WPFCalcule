@@ -160,6 +160,10 @@ namespace Desktop
                 toD5 = items.toD5;
             }
 
+            if(WVat.IsChecked==true)
+            {
+                TVA = 1;
+            }
             ulong total = 0;
             Decimal LPBTOTAL = 0;
             if (a == 1)
@@ -273,8 +277,19 @@ namespace Desktop
                 this.DragMove();
         }
 
-       
+        private void uncheckvat(object sender, RoutedEventArgs e)
+        {
 
-       
+            Vat.IsChecked = false;
+            WVat.IsChecked = true;
+
+        }
+
+        private void vatcheck(object sender, RoutedEventArgs e)
+        {
+            WVat.IsChecked = false;
+            Vat.IsChecked = true;
+
+        }
     }
 }

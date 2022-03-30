@@ -93,6 +93,9 @@
                 </Button>
                 <Button  Grid.Row="0" Grid.Column="1" Style="{DynamicResource button}" x:Name="btnclose" Width="90" Height="45" FontSize="15" FontWeight="Bold" BorderThickness="2" Content="Close" Cursor="Hand" Background="Transparent" Foreground="#f8b100" Margin="10" Click="Btnclose_Click"></Button>
                 <Button Grid.Row="0" Grid.Column="2" Style="{DynamicResource button}" x:Name="btnclear" Width="90" Height="45" FontSize="15" FontWeight="Bold" BorderThickness="2" Cursor="Hand" Content="Clear" Background="Transparent" Foreground="#f8b100" Margin="10" Click="Btnclear_Click"></Button>
+                <Label Content="Selling Price : " FontSize="15" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Foreground="white"></Label>
+                <CheckBox Content=" VAT " Focusable="False" Name="Vat" Click="vatcheck" IsChecked="True" VerticalAlignment="Center" FontSize="19" Foreground="white" Grid.Row="1" Grid.Column="1"></CheckBox>
+                <CheckBox Content=" Without VAT " Focusable="False"  Name="WVat" Click="uncheckvat" VerticalAlignment="Center" FontSize="19" Foreground="white" Grid.Row="1" Grid.Column="2"></CheckBox>
 
             </Grid>
             <StackPanel Grid.Row="5" Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 0"  Height="80"  >
