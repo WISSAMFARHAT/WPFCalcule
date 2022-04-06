@@ -69,6 +69,7 @@ namespace Desktop
             a = 2;
             CostInsert.Text = "" ;
             selling.Text = "";
+            sellingVAT.Text = "";
             CostInsert.Focus();
         }
 
@@ -82,6 +83,7 @@ namespace Desktop
             a = 1;
             CostInsert.Text = "" ;
             selling.Text = "";
+            sellingVAT.Text = "";
             CostInsert.Focus();
         }
 
@@ -94,6 +96,7 @@ namespace Desktop
         {
             CostInsert.Text = "";
             selling.Text = "";
+            sellingVAT.Text = "";
         }
        
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -160,12 +163,11 @@ namespace Desktop
                 toD5 = items.toD5;
             }
 
-            if(WVat.IsChecked==true)
-            {
-                TVA = 1;
-            }
+           
             ulong total = 0;
+            ulong totalvat = 0;
             Decimal LPBTOTAL = 0;
+            Decimal LPBTOTALVAT = 0;
             if (a == 1)
             {
                 var result = new string(CostInsert.Text.Where(c => char.IsDigit(c)).ToArray());
@@ -174,23 +176,25 @@ namespace Desktop
                 CostInsert.Text = d.ToString("#,0");
                 if (vOut <= tolb1)//lb1
                 {
-                    total = (ulong)(vOut * lb1 * TVA);
+                    total = (ulong)(vOut * lb1);
                 }
                 else if (vOut <= tolb1)//lb2
                 {
-                    total = (ulong)(vOut * lb2 * TVA);
+                    total = (ulong)(vOut * lb2);
                 }
                 else if (vOut <= tolb3)//lb3
                 {
-                    total = (ulong)(vOut * lb3 * TVA);
+                    total = (ulong)(vOut * lb3);
                 }
                 else//lb4
                 {
-                    total = (ulong)(vOut * lb4 * TVA);
+                    total = (ulong)(vOut * lb4 );
                 }
+                totalvat = (ulong)(total * TVA);
                 total = RoundLBP(total.ToString(), total);
-
+                totalvat= RoundLBP(totalvat.ToString(), totalvat);
                 selling.Text = total.ToString("#,0") + "  LBP";
+                sellingVAT.Text= totalvat.ToString("#,0") + "  LBP";
             }
             else
             {
@@ -199,35 +203,36 @@ namespace Desktop
                 if (v <= (Decimal)toD1)//d1
                 {
                     LPBTOTAL = Decimal.Multiply(v, (Decimal)d1);
-                    LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
+                    LPBTOTALVAT = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
                 }
                 else if (v <= (Decimal)toD2)//d2
                 {
                     LPBTOTAL = Decimal.Multiply(v, (Decimal)d2);
-                    LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
+                    LPBTOTALVAT = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
                 }
                 else if (v <= (Decimal)toD3)//d3
                 {
                     LPBTOTAL = Decimal.Multiply(v, (Decimal)d3);
-                    LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
+                    LPBTOTALVAT = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
                 }
                 else if (v <= (Decimal)toD4)//d4
                 {
                     LPBTOTAL = Decimal.Multiply(v, (Decimal)d4);
-                    LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
+                    LPBTOTALVAT = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
                 }
                 else if (v <= (Decimal)toD5)//d5
                 {
                     LPBTOTAL = Decimal.Multiply(v, (Decimal)d5);
-                    LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
+                    LPBTOTALVAT = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
                 }
                 else//d6
                 {
                     LPBTOTAL = Decimal.Multiply(v, (Decimal)d6);
-                    LPBTOTAL = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
+                    LPBTOTALVAT = Decimal.Multiply(LPBTOTAL, (Decimal)TVA);
                 }
 
                 selling.Text = LPBTOTAL.ToString("C");
+                sellingVAT.Text = LPBTOTALVAT.ToString("C");
             }
         }
 
@@ -277,19 +282,5 @@ namespace Desktop
                 this.DragMove();
         }
 
-        private void uncheckvat(object sender, RoutedEventArgs e)
-        {
-
-            Vat.IsChecked = false;
-            WVat.IsChecked = true;
-
-        }
-
-        private void vatcheck(object sender, RoutedEventArgs e)
-        {
-            WVat.IsChecked = false;
-            Vat.IsChecked = true;
-
-        }
-    }
+ }
 }
